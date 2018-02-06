@@ -1,0 +1,27 @@
+<Page loaded="loaded">
+  <Page.actionBar>
+    <ActionBar class="action-bar">
+      <ActionBar.titleView>
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="back"/>
+        <StackLayout orientation="horizontal"
+    ios:horizontalAlignment="center"
+    android:horizontalAlignment="left">
+          <Label text="Registro" style="font-size:22;" class="action-label-1" />
+        </StackLayout>
+      </ActionBar.titleView>
+      <ActionItem tap="onSaveUser"  ios.systemIcon="2" android.systemIcon="ic_menu_save"/>
+    </ActionBar>
+  </Page.actionBar>
+  <GridLayout columns="*" rows="auto, auto">
+    <StackLayout  col="0" row="0" orientation="vertical" class="margin-page">
+      <Label text="Nombre" class="label-text-static"/>
+      <TextField text="{{ name }}" class="field-text-static" hint="Nombre" returnKeyType="next" />
+      <Label text="Correo Electrónico" class="label-text-static"/>
+      <TextField text="{{ email }}" class="field-text-static" keyboardType="email"  hint="Correo electrónico" returnKeyType="next" />
+      <Label text="Teléfono" class="label-text-static"/>
+      <TextField text="{{ phone }}" class="final-field-text" keyboardType="phone"  hint="Teléfono" returnKeyType="done"/>
+    </StackLayout>
+    <ActivityIndicator busy="{{ isLoading }}" rowSpan="2" colSpan="2"  height="60" width="60"/>
+  </GridLayout>
+  
+</Page>

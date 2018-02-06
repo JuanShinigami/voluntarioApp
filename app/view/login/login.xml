@@ -1,0 +1,24 @@
+<Page loaded="loaded" actionBarHidden="true">
+  <Page.actionBar >
+    <ActionBar visibility="collapse" class="action-bar">
+      <ActionBar.titleView>
+        <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="center">
+          <Label text="" style="font-size:22;"/>
+        </StackLayout>
+        
+      </ActionBar.titleView>
+    </ActionBar>
+  </Page.actionBar>
+  <ActivityIndicator busy="{{ isLoading }}" height="60" width="60"/>
+  <ScrollView>
+  <StackLayout orientation="vertical">
+    
+    <Image src="~/images/logo.png" height="250"  horizontalAlignment="center" />
+    <TextField class="input-login" id="email" text="{{ email }}" hint="Correo electrónico" keyboardType="email" autocorrect="false" autocapitalizationType="none" />
+    <TextField class="input-login" text="{{ folio }}" hint="Folio" secure="true" />
+    <Button class="buttom-login" text="Entrar" tap="signIn" />
+    <Label class="buttom-link" text="Registrate" tap="register" horizontalAlignment="center"/>
+      
+  </StackLayout>
+  </ScrollView>
+</Page>

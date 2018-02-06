@@ -1,0 +1,74 @@
+<Page class="page" xmlns:nsDrawer="nativescript-pro-ui/sidedrawer"  xmlns:lv="nativescript-pro-ui/listview"
+    xmlns:myDrawer="./shared/my-drawer" navigatingTo="onNavigatingTo" xmlns="http://www.nativescript.org/tns.xsd">
+
+  <ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+    <ActionItem icon="res://navigation/menu"
+        android:visibility="collapsed"
+        tap="onDrawerButtonTap"
+        ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Simulacros"></Label>
+    <ActionItem tap="onCreateSimulacrumGroup" ios.systemIcon="4" android.systemIcon="ic_menu_add" visibility="{{ enabledCreate ? 'visible' : 'collapse' }}"/>
+    <ActionItem text="Unirse" android.position="popup" tap="join" visibility="{{ enabledCreate ? 'collapse' : 'visible' }}"/>
+  </ActionBar>
+  <nsDrawer:RadSideDrawer id="sideDrawer" showOverNavigation="true">
+    <nsDrawer:RadSideDrawer.drawerTransition>
+      <nsDrawer:SlideInOnTopTransition/>
+    </nsDrawer:RadSideDrawer.drawerTransition>
+    <nsDrawer:RadSideDrawer.drawerContent>
+      <StackLayout>
+        <myDrawer:MyDrawer selectedPage="Simulacros en Grupo"/>
+      </StackLayout>
+    </nsDrawer:RadSideDrawer.drawerContent>
+    <nsDrawer:RadSideDrawer.mainContent>
+      <ActivityIndicator busy="{{ isLoading }}" height="60" width="60"/>
+      <TabView tabBackgroundColor="rgb(232,76,61)"  selectedIndexChanged="onSelectedIndexChanged">
+        <TabView.items class="tab-view">
+          <TabViewItem  title="Creados">
+            <TabViewItem.view>
+              <GridLayout>
+                <ListView items="{{ simulacrumGroupList }}" id="simulacrumGroupList" itemTap="listViewItemTap" itemTapLong="log">
+                  <ListView.itemTemplate>
+                    <GridLayout rows="auto,auto,auto" columns="100,*,*,40" >
+                      <Label text="{{fecha}}" rowSpan="2" col="0" class="text-list-title" horizontalAlignment="center" verticalAlignment="center" />
+                      <Label text="Voluntarios" row="0" col="1" class="text-list-title" horizontalAlignment="center" />
+                      <Label text="Estado" row="0" col="2" class="text-list-title" horizontalAlignment="center" />
+                      <Label text="{{ voluntario }}" row="1" col="1" class="text-list-title" horizontalAlignment="center" />
+                      <Label text="{{ estatus }}" row="1" col="2" class="text-list-title" horizontalAlignment="center" />
+                      <Label text="&#xf014;" class="fa image-icon" rowSpan="3" col="3" visibility="{{ status ? 'visible' : 'collapsed' }}" horizontalAlignment="center" verticalAlignment="center" tap="delete" />
+                      <Label text="{{ ubicacion }}" row="2" colSpan="4" />
+                    </GridLayout>
+                  </ListView.itemTemplate>
+                </ListView>
+                <ActivityIndicator busy="{{ isLoading }}" height="60" width="60"/>
+              </GridLayout>
+            </TabViewItem.view>
+          </TabViewItem>
+          <TabViewItem title="Unidos">
+            <TabViewItem.view>
+              <GridLayout>
+                <ListView items="{{ simulacrumGroupListJoin }}" id="simulacrumGroupListJoin" itemTap="listViewItemTapJoin">
+                  <ListView.itemTemplate>
+                    <GridLayout rows="auto,auto,auto" columns="100,*,*,40" >
+                      <Label text="{{fecha}}" rowSpan="2" col="0" class="text-list-title" horizontalAlignment="center" verticalAlignment="center" />
+                      <Label text="Duración" row="0" col="2" class="text-list-title" horizontalAlignment="center" />
+                      <Label text="Hora del simulacro" row="0" col="1" class="text-list-title" horizontalAlignment="center" />
+                      <Label text="{{ tiempo_estoy_listo }}" row="1" col="2" class="text-list-title" horizontalAlignment="center" />
+                      <Label text="{{ hora }}" row="1" col="1" class="text-list-title" horizontalAlignment="center" />
+                      <Label text="&#xf00d;" class="fa image-icon" visibility="{{ status ? 'visible' : 'collapsed' }}" rowSpan="3" col="3" horizontalAlignment="center" verticalAlignment="center" tap="cancel" />
+                      <Label text="{{ ubicacion }}" row="2" colSpan="4" />
+                    </GridLayout>
+                  </ListView.itemTemplate>
+                </ListView>
+                <ActivityIndicator busy="{{ isLoading }}" height="60" width="60"/>
+              </GridLayout>
+            </TabViewItem.view>
+          </TabViewItem>
+        </TabView.items>
+      </TabView>
+
+    </nsDrawer:RadSideDrawer.mainContent>
+  </nsDrawer:RadSideDrawer>
+
+</Page>

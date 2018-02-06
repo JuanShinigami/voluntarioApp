@@ -1,0 +1,26 @@
+<Page loaded="loaded">
+  <Page.actionBar>
+    <ActionBar class="action-bar">
+      <ActionBar.titleView>
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="back"/>
+        <StackLayout orientation="horizontal"
+    ios:horizontalAlignment="center"
+    android:horizontalAlignment="left">
+
+          <Label text="¡Atento!" style="font-size:22;" />
+        </StackLayout>
+      </ActionBar.titleView>
+    </ActionBar>
+  </Page.actionBar>
+
+  <StackLayout orientation="vertical">
+    <GridLayout rows="auto" columns="*,60,60" >
+      <Label text="Voluntarios" row="0" visibility="{{ countVoluntaryVisible ? 'visible' : 'collapse' }}" class="text-title" col="0" horizontalAlignment="center" verticalAlignment="center" />
+      <Label text="{{ countVoluntary }}" visibility="{{ countVoluntaryVisible ? 'visible' : 'collapse' }}" class="text-title" row="0" col="1" horizontalAlignment="center" verticalAlignment="center" />
+      <ActivityIndicator col="2" row="0" busy="{{ isLoading }}" height="60" width="60"/>
+    </GridLayout>
+    <Label text="{{ cronometro1 }}" horizontalAlignment="center" verticalAlignment="center" class="text-crono"/>
+    <Button text="Estoy listo para salir" tap="evacuate" isEnabled="{{ evacuate }}" class="{{classButtonSuccess}}" />
+    <Button text="Estoy a salvo" tap="stop" isEnabled="{{ end }}" class="{{classButtonInfo}}" />
+  </StackLayout>
+</Page>

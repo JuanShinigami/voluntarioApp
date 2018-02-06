@@ -1,0 +1,38 @@
+<Page
+    navigatingTo="onNavigatingTo"  
+    xmlns:nsDrawer="nativescript-pro-ui/sidedrawer"
+    xmlns:myDrawer="shared/my-drawer"
+    xmlns="http://www.nativescript.org/tns.xsd">
+
+    <ActionBar class="action-bar">
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+        <ActionItem icon="res://navigation/menu" 
+            android:visibility="collapsed" 
+            tap="onDrawerButtonTap"
+            ios.position="left"
+            android.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="Mensajes"></Label>
+    </ActionBar>
+    <nsDrawer:RadSideDrawer id="sideDrawer" showOverNavigation="true">
+        <nsDrawer:RadSideDrawer.drawerTransition>
+            <nsDrawer:SlideInOnTopTransition/>
+        </nsDrawer:RadSideDrawer.drawerTransition>
+        <nsDrawer:RadSideDrawer.drawerContent>
+            <StackLayout>
+                <myDrawer:MyDrawer selectedPage="message"/>
+            </StackLayout>
+        </nsDrawer:RadSideDrawer.drawerContent>
+        <nsDrawer:RadSideDrawer.mainContent>
+          <GridLayout>
+            <ListView items="{{ massageList }}" id="massageList" itemTap="listViewItemTap">
+              <ListView.itemTemplate>
+                <GridLayout rows="auto" columns="60,*" >
+                </GridLayout>
+              </ListView.itemTemplate>
+            </ListView>
+            <ActivityIndicator busy="{{ isLoading }}" height="60" width="60"/>
+          </GridLayout>
+        </nsDrawer:RadSideDrawer.mainContent>
+    </nsDrawer:RadSideDrawer>
+</Page>

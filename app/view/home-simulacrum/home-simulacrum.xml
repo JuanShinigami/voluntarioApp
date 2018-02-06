@@ -1,0 +1,47 @@
+<Page
+    navigatingTo="onNavigatingTo"
+    xmlns:nsDrawer="nativescript-pro-ui/sidedrawer"
+    xmlns:myDrawer="shared/my-drawer"
+    xmlns="http://www.nativescript.org/tns.xsd">
+
+  <ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" tap="onDrawerButtonTap"></NavigationButton>
+    <ActionItem icon="res://navigation/menu"
+        android:visibility="collapsed"
+        tap="onDrawerButtonTap"
+        ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Simulacro"></Label>
+  </ActionBar>
+  <nsDrawer:RadSideDrawer id="sideDrawer" showOverNavigation="true">
+    <nsDrawer:RadSideDrawer.drawerTransition>
+      <nsDrawer:SlideInOnTopTransition/>
+    </nsDrawer:RadSideDrawer.drawerTransition>
+    <nsDrawer:RadSideDrawer.drawerContent>
+      <StackLayout>
+        <myDrawer:MyDrawer selectedPage="Simulacro Individual"/>
+      </StackLayout>
+    </nsDrawer:RadSideDrawer.drawerContent>
+    <nsDrawer:RadSideDrawer.mainContent>
+      <StackLayout orientation="vertical">
+        <Label text="{{ cronometro1 }}" horizontalAlignment="center" verticalAlignment="center" class="text-crono"/>
+        <Button text="Preparar simulacro" tap="start" isEnabled="{{ initial }}" class="{{classButtonPrimary}}" />
+        <Button text="Estoy listo para salir" tap="evacuate" isEnabled="{{ evacuate }}" class="{{classButtonSuccess}}" />
+        <Button text="Estoy a salvo" tap="stop" isEnabled="{{ end }}" class="{{classButtonInfo}}" />
+
+        <GridLayout>
+          <ListView items="{{ alarmList }}" id="alarmList" itemTap="listViewItemTap">
+            <ListView.itemTemplate>
+              <GridLayout rows="auto,auto" columns="*,*,*" >
+                <Label text="{{ 'Simulacro ' + identify }}" row="0" colSpan="3" class="text-list-title" horizontalAlignment="center" />
+                <Label text="{{ date }}" row="1" col="0" class="text-list" horizontalAlignment="center" />
+                <Label text="{{ time }}" row="1" col="1" class="text-list" horizontalAlignment="center" />
+                <Label text="{{ duration }}" row="1" col="2" class="text-list" horizontalAlignment="center" />
+              </GridLayout>
+            </ListView.itemTemplate>
+          </ListView>
+        </GridLayout>
+      </StackLayout>
+    </nsDrawer:RadSideDrawer.mainContent>
+  </nsDrawer:RadSideDrawer>
+</Page>

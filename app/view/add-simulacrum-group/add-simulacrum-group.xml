@@ -1,0 +1,32 @@
+<Page loaded="loaded" xmlns:df="nativescript-pro-ui/dataform">
+  
+  <Page.actionBar>
+    <ActionBar class="action-bar">
+      <ActionBar.titleView>
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="back"/>
+        <StackLayout orientation="horizontal"
+    ios:horizontalAlignment="center"
+    android:horizontalAlignment="left">
+          
+          <Label text="Crear simulacro grupal" style="font-size:22;" class="action-label-1" />
+        </StackLayout>
+      </ActionBar.titleView>
+      <ActionItem tap="onSaveSimulacrumGroup"  ios.systemIcon="2" android.systemIcon="ic_menu_save"/>
+    </ActionBar>
+  </Page.actionBar>
+  
+  <GridLayout columns="*" rows="auto, auto">
+    
+   <StackLayout col="0" row="0">
+     
+     <Label text="{{ '&#xf073; ' + currentDate }}" class="fa image-icon" horizontalAlignment="center" />
+     <StackLayout class="title">
+       <Label text="Selecciona la hora" horizontalAlignment="center" />
+     </StackLayout>
+      
+      <TimePicker loaded="onPickerLoaded" id="timePicker" horizontalAlignment="center"/>
+    </StackLayout>
+    <ActivityIndicator busy="{{ isLoading }}" rowSpan="2" colSpan="2"  height="60" width="60"/>
+  </GridLayout>
+  
+</Page>
